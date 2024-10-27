@@ -39,8 +39,8 @@
   text-align: center;
 }
 </style>
-<script>
-import GlobalHeader from "@/components/GlobalHeader";
+<script lang="ts">
+import GlobalHeader from "@/components/GlobalHeader.vue";
 
 export default {
   components: { GlobalHeader },

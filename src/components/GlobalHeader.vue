@@ -12,7 +12,7 @@
           disabled
         >
           <div class="title-bar">
-            <img class="logo" src="../assets/zoj-logo.png" />
+            <img class="logo" src="../assets/logo.png" />
             <div class="title">Z - OJ</div>
           </div>
         </a-menu-item>
