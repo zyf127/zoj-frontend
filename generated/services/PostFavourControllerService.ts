@@ -1,7 +1,3 @@
-/* generated using openapi-typescript-codegen -- do not edit */
-/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
 import type { BaseResponse_int_ } from "../models/BaseResponse_int_";
 import type { BaseResponse_Page_PostVO_ } from "../models/BaseResponse_Page_PostVO_";
 import type { PostFavourAddRequest } from "../models/PostFavourAddRequest";

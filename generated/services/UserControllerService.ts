@@ -1,7 +1,3 @@
-/* generated using openapi-typescript-codegen -- do not edit */
-/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
 import type { BaseResponse_boolean_ } from "../models/BaseResponse_boolean_";
 import type { BaseResponse_LoginUserVO_ } from "../models/BaseResponse_LoginUserVO_";
 import type { BaseResponse_long_ } from "../models/BaseResponse_long_";
@@ -186,29 +182,6 @@ export class UserControllerService {
       method: "POST",
       url: "/api/user/login",
       body: userLoginRequest,
-      errors: {
-        401: `Unauthorized`,
-        403: `Forbidden`,
-        404: `Not Found`,
-      },
-    });
-  }
-
-  /**
-   * userLoginByWxOpen
-   * @param code code
-   * @returns BaseResponse_LoginUserVO_ OK
-   * @throws ApiError
-   */
-  public static userLoginByWxOpenUsingGet(
-    code: string
-  ): CancelablePromise<BaseResponse_LoginUserVO_> {
-    return __request(OpenAPI, {
-      method: "GET",
-      url: "/api/user/login/wx_open",
-      query: {
-        code: code,
-      },
       errors: {
         401: `Unauthorized`,
         403: `Forbidden`,
