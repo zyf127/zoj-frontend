@@ -4,7 +4,6 @@
 /* eslint-disable */
 import type { OrderItem } from "./OrderItem";
 import type { User } from "./User";
-
 export type Page_User_ = {
   countId?: string;
   current?: number;

@@ -4,7 +4,6 @@
 /* eslint-disable */
 import type { OrderItem } from "./OrderItem";
 import type { Post } from "./Post";
-
 export type Page_Post_ = {
   countId?: string;
   current?: number;

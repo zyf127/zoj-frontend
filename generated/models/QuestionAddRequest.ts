@@ -4,7 +4,6 @@
 /* eslint-disable */
 import type { JudgeCase } from "./JudgeCase";
 import type { JudgeConfig } from "./JudgeConfig";
-
 export type QuestionAddRequest = {
   answer?: string;
   content?: string;

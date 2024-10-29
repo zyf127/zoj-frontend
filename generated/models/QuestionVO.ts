@@ -4,7 +4,6 @@
 /* eslint-disable */
 import type { JudgeConfig } from "./JudgeConfig";
 import type { UserVO } from "./UserVO";
-
 export type QuestionVO = {
   acceptedNum?: number;
   content?: string;

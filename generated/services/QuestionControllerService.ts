@@ -1,7 +1,12 @@
+/* generated using openapi-typescript-codegen -- do not edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
 import type { BaseResponse_boolean_ } from "../models/BaseResponse_boolean_";
 import type { BaseResponse_long_ } from "../models/BaseResponse_long_";
 import type { BaseResponse_Page_Question_ } from "../models/BaseResponse_Page_Question_";
 import type { BaseResponse_Page_QuestionVO_ } from "../models/BaseResponse_Page_QuestionVO_";
+import type { BaseResponse_Question_ } from "../models/BaseResponse_Question_";
 import type { BaseResponse_QuestionVO_ } from "../models/BaseResponse_QuestionVO_";
 import type { DeleteRequest } from "../models/DeleteRequest";
 import type { QuestionAddRequest } from "../models/QuestionAddRequest";
@@ -11,7 +16,6 @@ import type { QuestionUpdateRequest } from "../models/QuestionUpdateRequest";
 import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";
-
 export class QuestionControllerService {
   /**
    * addQuestion
@@ -34,7 +38,6 @@ export class QuestionControllerService {
       },
     });
   }
-
   /**
    * deleteQuestion
    * @param deleteRequest deleteRequest
@@ -56,7 +59,6 @@ export class QuestionControllerService {
       },
     });
   }
-
   /**
    * editQuestion
    * @param questionEditRequest questionEditRequest
@@ -78,7 +80,28 @@ export class QuestionControllerService {
       },
     });
   }
-
+  /**
+   * getQuestionById
+   * @param id id
+   * @returns BaseResponse_Question_ OK
+   * @throws ApiError
+   */
+  public static getQuestionByIdUsingGet(
+    id?: number
+  ): CancelablePromise<BaseResponse_Question_> {
+    return __request(OpenAPI, {
+      method: "GET",
+      url: "/api/question/get",
+      query: {
+        id: id,
+      },
+      errors: {
+        401: `Unauthorized`,
+        403: `Forbidden`,
+        404: `Not Found`,
+      },
+    });
+  }
   /**
    * getQuestionVOById
    * @param id id
@@ -101,7 +124,6 @@ export class QuestionControllerService {
       },
     });
   }
-
   /**
    * listQuestionByPage
    * @param questionQueryRequest questionQueryRequest
@@ -123,7 +145,6 @@ export class QuestionControllerService {
       },
     });
   }
-
   /**
    * listQuestionVOByPage
    * @param questionQueryRequest questionQueryRequest
@@ -145,7 +166,6 @@ export class QuestionControllerService {
       },
     });
   }
-
   /**
    * listMyQuestionVOByPage
    * @param questionQueryRequest questionQueryRequest
@@ -167,7 +187,6 @@ export class QuestionControllerService {
       },
     });
   }
-
   /**
    * updateQuestion
    * @param questionUpdateRequest questionUpdateRequest

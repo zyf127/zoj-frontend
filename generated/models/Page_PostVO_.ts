@@ -4,7 +4,6 @@
 /* eslint-disable */
 import type { OrderItem } from "./OrderItem";
 import type { PostVO } from "./PostVO";
-
 export type Page_PostVO_ = {
   countId?: string;
   current?: number;

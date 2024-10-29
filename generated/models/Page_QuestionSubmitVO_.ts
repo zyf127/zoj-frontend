@@ -4,7 +4,6 @@
 /* eslint-disable */
 import type { OrderItem } from "./OrderItem";
 import type { QuestionSubmitVO } from "./QuestionSubmitVO";
-
 export type Page_QuestionSubmitVO_ = {
   countId?: string;
   current?: number;
