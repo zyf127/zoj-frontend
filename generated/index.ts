@@ -67,5 +67,4 @@ export { PostControllerService } from "./services/PostControllerService";
 export { PostFavourControllerService } from "./services/PostFavourControllerService";
 export { PostThumbControllerService } from "./services/PostThumbControllerService";
 export { QuestionControllerService } from "./services/QuestionControllerService";
-export { QuestionSubmitControllerService } from "./services/QuestionSubmitControllerService";
 export { UserControllerService } from "./services/UserControllerService";

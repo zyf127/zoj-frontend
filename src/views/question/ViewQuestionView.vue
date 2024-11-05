@@ -32,8 +32,6 @@
               </template>
             </a-card>
           </a-tab-pane>
-          <a-tab-pane key="comment" title="评论" disabled> 评论区</a-tab-pane>
-          <a-tab-pane key="answer" title="答案"> 暂时无法查看答案</a-tab-pane>
         </a-tabs>
       </a-col>
       <a-col :md="12" :xs="24">
@@ -50,13 +48,12 @@
             >
               <a-option>Java</a-option>
               <a-option>C++</a-option>
-              <a-option>html</a-option>
             </a-select>
           </a-form-item>
         </a-form>
         <CodeEditor
           :value="form.code as string"
-          :language="form.language"
+          language="java"
           :handle-change="changeCode"
         />
         <a-divider size="0" />
@@ -70,15 +67,14 @@
 
 <script setup lang="ts">
 import { onMounted, ref, withDefaults, defineProps } from "vue";
-import {
-  QuestionControllerService,
-  QuestionSubmitAddRequest,
-  QuestionSubmitControllerService,
-  QuestionVO,
-} from "../../../generated";
 import message from "@arco-design/web-vue/es/message";
 import CodeEditor from "@/components/CodeEditor.vue";
 import MdViewer from "@/components/MdViewer.vue";
+import {
+  QuestionControllerService,
+  QuestionSubmitAddRequest,
+  QuestionVO,
+} from "../../../generated";
 
 interface Props {
   id: string;
@@ -114,7 +110,7 @@ const doSubmit = async () => {
     return;
   }
 
-  const res = await QuestionSubmitControllerService.doQuestionSubmitUsingPost({
+  const res = await QuestionControllerService.doQuestionSubmitUsingPost({
     ...form.value,
     questionId: question.value.id,
   });

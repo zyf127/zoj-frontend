@@ -3,6 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { UserVO } from "./UserVO";
+
 export type PostVO = {
   content?: string;
   createTime?: string;
