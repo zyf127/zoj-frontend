@@ -31,9 +31,6 @@
       }"
       @page-change="onPageChange"
     >
-      <template #judgeInfo="{ record }">
-        {{ JSON.stringify(record.judgeInfo) }}
-      </template>
       <template #createTime="{ record }">
         {{ moment(record.createTime).format("YYYY-MM-DD") }}
       </template>
@@ -59,7 +56,7 @@ const total = ref(0);
 const searchParams = ref<QuestionSubmitQueryRequest>({
   questionTitle: "",
   language: undefined,
-  pageSize: 10,
+  pageSize: 9,
   current: 1,
 });
 
@@ -111,7 +108,7 @@ const columns = [
     dataIndex: "judgeInfo.time",
   },
   {
-    title: "消耗内存（B）",
+    title: "消耗内存（MB）",
     dataIndex: "judgeInfo.memory",
   },
   {

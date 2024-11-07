@@ -42,6 +42,16 @@ export const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: "/",
+    name: "浏览题目",
+    component: QuestionsView,
+  },
+  {
+    path: "/question_submit",
+    name: "提交记录",
+    component: QuestionSubmitView,
+  },
+  {
     path: "/add/question",
     name: "创建题目",
     component: AddQuestionView,
@@ -65,16 +75,6 @@ export const routes: Array<RouteRecordRaw> = [
     meta: {
       access: ACCESS_ENUM.ADMIN,
     },
-  },
-  {
-    path: "/",
-    name: "浏览题目",
-    component: QuestionsView,
-  },
-  {
-    path: "/question_submit",
-    name: "浏览题目提交",
-    component: QuestionSubmitView,
   },
   {
     path: "/noAuth",

@@ -21,9 +21,12 @@
         </a-menu-item>
       </a-menu>
     </a-col>
-    <a-col flex="100px">
+    <a-col flex="100px" style="margin-right: 100px">
       <div>
-        {{ store.state.user?.loginUser?.userName ?? "未登录" }}
+        <span v-if="store.state.user?.loginUser?.userName !== '未登录'">
+          {{ store.state.user?.loginUser?.userName }}
+        </span>
+        <a-button v-else type="primary" @click="toLogin">登录/注册</a-button>
       </div>
     </a-col>
   </a-row>
@@ -77,6 +80,10 @@ const doMenuClick = (key: string) => {
   router.push({
     path: key,
   });
+};
+
+const toLogin = () => {
+  router.push("/user/login");
 };
 </script>
 
