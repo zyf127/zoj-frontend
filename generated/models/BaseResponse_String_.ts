@@ -2,9 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type PostUpdateRequest = {
-  content?: string;
-  id?: number;
-  tags?: Array<string>;
-  title?: string;
+export type BaseResponse_String_ = {
+  code?: number;
+  data?: string;
+  message?: string;
 };

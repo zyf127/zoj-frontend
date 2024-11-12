@@ -52,6 +52,7 @@ const handleSubmit = async () => {
   const res = await UserControllerService.userLoginUsingPost(form);
   // 登录成功，跳转到主页
   if (res.code === 0) {
+    localStorage.setItem("token", res.data);
     await store.dispatch("user/getLoginUser");
     router.push({
       path: "/",

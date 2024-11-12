@@ -19,6 +19,7 @@ import type { UserUpdateRequest } from "../models/UserUpdateRequest";
 import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";
+import { BaseResponse_String_ } from "../models/BaseResponse_String_";
 
 export class UserControllerService {
   /**
@@ -33,7 +34,7 @@ export class UserControllerService {
   ): CancelablePromise<BaseResponse_long_ | any> {
     return __request(OpenAPI, {
       method: "POST",
-      url: "/api/user/add",
+      url: "/api/user/admin/add",
       body: userAddRequest,
       errors: {
         401: `Unauthorized`,
@@ -55,7 +56,7 @@ export class UserControllerService {
   ): CancelablePromise<BaseResponse_boolean_ | any> {
     return __request(OpenAPI, {
       method: "POST",
-      url: "/api/user/delete",
+      url: "/api/user/admin/delete",
       body: deleteRequest,
       errors: {
         401: `Unauthorized`,
@@ -76,7 +77,7 @@ export class UserControllerService {
   ): CancelablePromise<BaseResponse_User_> {
     return __request(OpenAPI, {
       method: "GET",
-      url: "/api/user/get",
+      url: "/api/user/admin/get",
       query: {
         id: id,
       },
@@ -140,7 +141,7 @@ export class UserControllerService {
   ): CancelablePromise<BaseResponse_Page_User_ | any> {
     return __request(OpenAPI, {
       method: "POST",
-      url: "/api/user/list/page",
+      url: "/api/user/admin/list/page",
       body: userQueryRequest,
       errors: {
         401: `Unauthorized`,
@@ -181,7 +182,7 @@ export class UserControllerService {
    */
   public static userLoginUsingPost(
     userLoginRequest: UserLoginRequest
-  ): CancelablePromise<BaseResponse_LoginUserVO_ | any> {
+  ): CancelablePromise<BaseResponse_String_ | any> {
     return __request(OpenAPI, {
       method: "POST",
       url: "/api/user/login",
@@ -248,7 +249,7 @@ export class UserControllerService {
   ): CancelablePromise<BaseResponse_boolean_ | any> {
     return __request(OpenAPI, {
       method: "POST",
-      url: "/api/user/update",
+      url: "/api/user/admin/update",
       body: userUpdateRequest,
       errors: {
         401: `Unauthorized`,

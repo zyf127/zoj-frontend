@@ -15,9 +15,6 @@
                 <a-descriptions-item label="内存限制">
                   {{ question.judgeConfig.memoryLimit ?? 0 }}
                 </a-descriptions-item>
-                <a-descriptions-item label="堆栈限制">
-                  {{ question.judgeConfig.stackLimit ?? 0 }}
-                </a-descriptions-item>
               </a-descriptions>
               <MdViewer :value="question.content || ''" />
               <template #extra>

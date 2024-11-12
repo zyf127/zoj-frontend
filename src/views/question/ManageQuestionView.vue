@@ -12,6 +12,9 @@
       }"
       @page-change="onPageChange"
     >
+      <template #createTime="{ record }">
+        {{ moment(record.createTime).format("YYYY-MM-DD") }}
+      </template>
       <template #optional="{ record }">
         <a-space>
           <a-button type="primary" @click="doUpdate(record)"> 修改</a-button>
@@ -26,8 +29,8 @@
 import { onMounted, ref, watchEffect } from "vue";
 import { Question, QuestionControllerService } from "../../../generated";
 import message from "@arco-design/web-vue/es/message";
-import * as querystring from "querystring";
 import { useRouter } from "vue-router";
+import moment from "moment";
 
 const tableRef = ref();
 
@@ -43,7 +46,12 @@ const loadData = async () => {
     searchParams.value
   );
   if (res.code === 0) {
-    dataList.value = res.data.records;
+    dataList.value = res.data.records.map((record: any) => {
+      return {
+        ...record,
+        judgeConfig: JSON.parse(record.judgeConfig || "{}"), // 解析 judgeConfig 字符串
+      };
+    });
     total.value = res.data.total;
   } else {
     message.error("加载失败，" + res.message);
@@ -68,24 +76,12 @@ onMounted(() => {
 
 const columns = [
   {
-    title: "id",
-    dataIndex: "id",
-  },
-  {
     title: "标题",
     dataIndex: "title",
   },
   {
-    title: "内容",
-    dataIndex: "content",
-  },
-  {
     title: "标签",
     dataIndex: "tags",
-  },
-  {
-    title: "答案",
-    dataIndex: "answer",
   },
   {
     title: "提交数",
@@ -96,20 +92,16 @@ const columns = [
     dataIndex: "acceptedNum",
   },
   {
-    title: "判题配置",
-    dataIndex: "judgeConfig",
+    title: "时间限制（ms）",
+    dataIndex: "judgeConfig.timeLimit",
   },
   {
-    title: "判题用例",
-    dataIndex: "judgeCase",
-  },
-  {
-    title: "用户id",
-    dataIndex: "userId",
+    title: "内存限制（MB）",
+    dataIndex: "judgeConfig.memoryLimit",
   },
   {
     title: "创建时间",
-    dataIndex: "createTime",
+    slotName: "createTime",
   },
   {
     title: "操作",

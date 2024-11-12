@@ -19,7 +19,7 @@
           <a-form-item field="judgeConfig.timeLimit" label="时间限制">
             <a-input-number
               v-model="form.judgeConfig.timeLimit"
-              placeholder="请输入时间限制"
+              placeholder="请输入时间限制（ms）"
               mode="button"
               min="0"
               size="large"
@@ -28,16 +28,7 @@
           <a-form-item field="judgeConfig.memoryLimit" label="内存限制">
             <a-input-number
               v-model="form.judgeConfig.memoryLimit"
-              placeholder="请输入内存限制"
-              mode="button"
-              min="0"
-              size="large"
-            />
-          </a-form-item>
-          <a-form-item field="judgeConfig.stackLimit" label="堆栈限制">
-            <a-input-number
-              v-model="form.judgeConfig.stackLimit"
-              placeholder="请输入堆栈限制"
+              placeholder="请输入内存限制（MB）"
               mode="button"
               min="0"
               size="large"
@@ -114,8 +105,7 @@ let form = ref({
   answer: "",
   content: "",
   judgeConfig: {
-    memoryLimit: 1000,
-    stackLimit: 1000,
+    memoryLimit: 64,
     timeLimit: 1000,
   },
   judgeCase: [
@@ -152,8 +142,7 @@ const loadData = async () => {
     }
     if (!form.value.judgeConfig) {
       form.value.judgeConfig = {
-        memoryLimit: 1000,
-        stackLimit: 1000,
+        memoryLimit: 64,
         timeLimit: 1000,
       };
     } else {
