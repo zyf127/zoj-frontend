@@ -21,6 +21,9 @@
         <a-button type="primary" html-type="submit" style="width: 120px">
           登 录
         </a-button>
+        <a-button type="text" @click="toRegister" style="margin-left: 120px"
+          >还没有账号？点击注册</a-button
+        >
       </a-form-item>
     </a-form>
   </div>
@@ -61,5 +64,9 @@ const handleSubmit = async () => {
   } else {
     message.error("登录失败，" + res.message);
   }
+};
+
+const toRegister = () => {
+  router.push("/user/register");
 };
 </script>

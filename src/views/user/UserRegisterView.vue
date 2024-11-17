@@ -31,6 +31,9 @@
         <a-button type="primary" html-type="submit" style="width: 120px">
           注 册
         </a-button>
+        <a-button type="text" @click="toLogin" style="margin-left: 120px"
+          >已有账号？点击登录</a-button
+        >
       </a-form-item>
     </a-form>
   </div>
@@ -69,5 +72,9 @@ const handleSubmit = async () => {
   } else {
     message.error("注册失败，" + res.message);
   }
+};
+
+const toLogin = () => {
+  router.push("/user/login");
 };
 </script>

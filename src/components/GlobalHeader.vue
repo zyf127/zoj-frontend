@@ -23,9 +23,19 @@
     </a-col>
     <a-col flex="100px" style="margin-right: 100px">
       <div>
-        <span v-if="store.state.user?.loginUser?.userName !== '未登录'">
+        <div
+          v-if="store.state.user?.loginUser?.userName !== '未登录'"
+          style="padding-bottom: 10px; text-align: center"
+        >
           {{ store.state.user?.loginUser?.userName }}
-        </span>
+          <a-button
+            type="outline"
+            size="mini"
+            @click="logout"
+            style="margin-top: 5px"
+            >退出登录</a-button
+          >
+        </div>
         <a-button v-else type="primary" @click="toLogin">登录/注册</a-button>
       </div>
     </a-col>
@@ -34,7 +44,7 @@
 
 <script setup lang="ts">
 import { routes } from "../router/routes";
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import checkAccess from "@/access/checkAccess";
@@ -84,6 +94,11 @@ const doMenuClick = (key: string) => {
 
 const toLogin = () => {
   router.push("/user/login");
+};
+
+const logout = () => {
+  localStorage.removeItem("token");
+  window.location.reload();
 };
 </script>
 
