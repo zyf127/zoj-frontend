@@ -1,6 +1,6 @@
 <template>
   <div id="addQuestionView">
-    <h2>创建题目</h2>
+    <h2>{{ updatePage ? "修改题目" : "创建题目" }}</h2>
     <a-form :model="form" label-align="left">
       <a-form-item field="title" label="标题">
         <a-input v-model="form.title" placeholder="请输入标题" />
@@ -16,7 +16,7 @@
       </a-form-item>
       <a-form-item label="判题配置" :content-flex="false" :merge-props="false">
         <a-space direction="vertical" style="min-width: 480px">
-          <a-form-item field="judgeConfig.timeLimit" label="时间限制">
+          <a-form-item field="judgeConfig.timeLimit" label="时间限制（ms）">
             <a-input-number
               v-model="form.judgeConfig.timeLimit"
               placeholder="请输入时间限制（ms）"
@@ -25,10 +25,10 @@
               size="large"
             />
           </a-form-item>
-          <a-form-item field="judgeConfig.memoryLimit" label="内存限制">
+          <a-form-item field="judgeConfig.memoryLimit" label="内存限制（KB）">
             <a-input-number
               v-model="form.judgeConfig.memoryLimit"
-              placeholder="请输入内存限制（MB）"
+              placeholder="请输入内存限制（KB）"
               mode="button"
               min="0"
               size="large"
@@ -49,20 +49,20 @@
           <a-space direction="vertical" style="min-width: 640px">
             <a-form-item
               :field="`form.judgeCase[${index}].input`"
-              :label="`输入用例-${index}`"
+              :label="`输入用例-${index + 1}`"
               :key="index"
             >
-              <a-input
+              <a-textarea
                 v-model="judgeCaseItem.input"
                 placeholder="请输入测试输入用例"
               />
             </a-form-item>
             <a-form-item
               :field="`form.judgeCase[${index}].output`"
-              :label="`输出用例-${index}`"
+              :label="`输出用例-${index + 1}`"
               :key="index"
             >
-              <a-input
+              <a-textarea
                 v-model="judgeCaseItem.output"
                 placeholder="请输入测试输出用例"
               />
@@ -105,7 +105,7 @@ let form = ref({
   answer: "",
   content: "",
   judgeConfig: {
-    memoryLimit: 64,
+    memoryLimit: 64 * 1024,
     timeLimit: 1000,
   },
   judgeCase: [

@@ -96,7 +96,7 @@ const columns = [
     dataIndex: "judgeConfig.timeLimit",
   },
   {
-    title: "内存限制（MB）",
+    title: "内存限制（KB）",
     dataIndex: "judgeConfig.memoryLimit",
   },
   {

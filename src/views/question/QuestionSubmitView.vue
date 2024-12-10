@@ -34,12 +34,15 @@
       <template #createTime="{ record }">
         {{ moment(record.createTime).format("YYYY-MM-DD") }}
       </template>
+      <template #status="{ record }">
+        {{ statusMap[record.status] }}
+      </template>
     </a-table>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watchEffect } from "vue";
+import { onBeforeUnmount, onMounted, onUnmounted, ref, watchEffect } from "vue";
 import {
   Question,
   QuestionControllerService,
@@ -53,12 +56,22 @@ const tableRef = ref();
 
 const dataList = ref([]);
 const total = ref(0);
+
+const statusMap = {
+  0: "等待中",
+  1: "判题中",
+  2: "已判题",
+  3: "判题失败",
+};
+
 const searchParams = ref<QuestionSubmitQueryRequest>({
   questionTitle: "",
   language: undefined,
-  pageSize: 9,
+  pageSize: 8,
   current: 1,
 });
+
+let pollingTimer: any = null;
 
 const loadData = async () => {
   const res =
@@ -76,6 +89,25 @@ const loadData = async () => {
   }
 };
 
+const startPolling = () => {
+  if (pollingTimer) {
+    // 如果已有计时器，先清除
+    clearInterval(pollingTimer);
+  }
+
+  // 每3秒轮询一次
+  pollingTimer = setInterval(async () => {
+    await loadData();
+  }, 3000);
+};
+
+const stopPolling = () => {
+  if (pollingTimer) {
+    clearInterval(pollingTimer);
+    pollingTimer = null;
+  }
+};
+
 /**
  * 监听 searchParams 变量，改变时触发页面的重新加载
  */
@@ -88,6 +120,15 @@ watchEffect(() => {
  */
 onMounted(() => {
   loadData();
+  startPolling();
+});
+
+onBeforeUnmount(() => {
+  stopPolling();
+});
+
+onUnmounted(() => {
+  stopPolling();
 });
 
 const columns = [
@@ -108,12 +149,12 @@ const columns = [
     dataIndex: "judgeInfo.time",
   },
   {
-    title: "消耗内存（MB）",
+    title: "消耗内存（KB）",
     dataIndex: "judgeInfo.memory",
   },
   {
     title: "判题状态",
-    dataIndex: "status",
+    slotName: "status",
   },
   {
     title: "提交者",
